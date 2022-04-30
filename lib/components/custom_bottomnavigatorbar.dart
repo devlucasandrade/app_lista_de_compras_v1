@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+
+class CustomBottomnavigatorbar extends StatelessWidget {
+  final double total;
+  const CustomBottomnavigatorbar({
+    Key? key,
+    required this.total,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          width: MediaQuery.of(context).size.width,
+          height: 60,
+          color: Colors.blue,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total R\$ ' + total.toStringAsFixed(2),
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                ),
+                child: Text(
+                  'ADICIONAR',
+                  style: TextStyle(
+                    color: Colors.blue.shade800,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/adicionarproduto');
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
