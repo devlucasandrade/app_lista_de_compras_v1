@@ -76,4 +76,6 @@ flutter run
 
 ## Observações
 
-- Os créditos dos assets do projeto pertemcem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki. 
+- Os créditos dos assets do projeto pertemcem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki.
+
+- Aplicativo em fase de testes.
