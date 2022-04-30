@@ -1,4 +1,4 @@
-#Lista de Compras
+<h1>Lista de Compras</h1>
 
 <hr>
 
@@ -6,7 +6,7 @@
    <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=RED&style=for-the-badge"/>
 </p>
 
-### Tópicos 
+## Tópicos 
 
 - [Descrição do projeto](#descrição-do-projeto)
 
@@ -14,7 +14,7 @@
 
 - [Aplicação](#aplicação)
 
-- [Executando ao projeto](#executando-ao-projeto)
+- [Executando o projeto](#executando-o-projeto)
 
 - [Observações](#observações)
 
@@ -44,7 +44,7 @@ A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazi
 
 <div align="center">
 
-incluir gif aqui
+GIF OU SCREENSHOTS
 
 <!-- ![Android Emulator](https://user-images.githubusercontent.com/37356058/135944390-ec96d4ec-ee43-4db9-882f-89be66aad23a.gif)
 -->
