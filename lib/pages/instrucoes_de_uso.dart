@@ -59,7 +59,7 @@ class _InstrucoesDeUsoState extends State<InstrucoesDeUso> {
               urlImage: 'assets/images/todolist.png',
               title: 'NOME, QUANTIDADE E PREÇO',
               subtitle:
-                  'Depois de clicar no botão ADICIONAR, você será enviado para tela onde devem ser preenchidos os dados do produto. \n\nInforme o nome, quantidade e preço. Caso esteja em casa, coloque o valor como Zero. Quando estiver no supermercado basta ATUALIZAR o valor.',
+                  'Após adicionar o item, você será enviado para tela onde devem ser preenchidos os dados. \n\nCaso esteja em casa, coloque o preço como Zero e quando estiver no supermercado basta ATUALIZAR o preço.',
             ),
             ContainerInstrucoes(
               color: Colors.blue.shade100,

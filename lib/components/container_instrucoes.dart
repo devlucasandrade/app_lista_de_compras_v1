@@ -26,7 +26,7 @@ class ContainerInstrucoes extends StatelessWidget {
             child: Image.asset(
               urlImage,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width * .8,
+              width: MediaQuery.of(context).size.width * .7,
             ),
           ),
           Container(
