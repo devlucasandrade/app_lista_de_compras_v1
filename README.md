@@ -44,10 +44,8 @@ A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazi
 
 <div align="center">
 
-GIF OU SCREENSHOTS
+![Uso do aplicativo]https://github.com/devlucasandrade/lista_de_compras/blob/master/Lista%20de%20Compras.gif)
 
-<!-- ![Android Emulator](https://user-images.githubusercontent.com/37356058/135944390-ec96d4ec-ee43-4db9-882f-89be66aad23a.gif)
--->
 </div>
 
 ###
