@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:lista_de_compras2/components/container_instrucoes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
