@@ -36,31 +36,46 @@ class CarrinhoDeCompras extends StatelessWidget {
           ),
         ],
       ),
-      body: produtos.itens.isEmpty
-          ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Para começar a usar, adicione produtos ao carrinho, clicando no botâo ADICIONAR logo abaixo.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
+      body: FutureBuilder(
+        future: Provider.of<ListaDeProdutos>(context, listen: false)
+            .carregarProdutos(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.none
+                ? Center(
+                    child: Text('Nenhum produto cadastrado.'),
+                  )
+                : Consumer<ListaDeProdutos>(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Para começar a usar, adicione produtos ao carrinho, clicando no botâo ADICIONAR logo abaixo.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                          Image.asset(
+                            'assets/images/carrinho.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ],
+                      ),
                     ),
+                    builder: (context, listarProdutos, ch) =>
+                        listarProdutos.count == 0
+                            ? ch!
+                            : ListView.builder(
+                                itemCount: listarProdutos.count,
+                                itemBuilder: (context, index) =>
+                                    ItemDaListaDeProdutosDoCarrinho(
+                                  produtos.byIndex(index),
+                                ),
+                              ),
                   ),
-                  Image.asset(
-                    'assets/images/carrinho.png',
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
-            )
-          : ListView.builder(
-              itemCount: produtos.count,
-              itemBuilder: (context, index) =>
-                  ItemDaListaDeProdutosDoCarrinho(produtos.byIndex(index)),
-            ),
+      ),
       bottomNavigationBar: CustomBottomnavigatorbar(
         total: totalCarrinho,
       ),
