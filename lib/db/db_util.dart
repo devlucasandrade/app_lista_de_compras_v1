@@ -29,6 +29,15 @@ class DBUtil {
     );
   }
 
+  static Future<void> update(String table, Map<String, Object> data) async {
+    final db = await DBUtil.database();
+    await db.update(
+      table,
+      data,
+      conflictAlgorithm: sql.ConflictAlgorithm.replace,
+    );
+  }
+
   static Future<void> delete(String table, String id) async {
     final db = await DBUtil.database();
     await db.delete(table, where: "id = ?", whereArgs: [id]);

@@ -59,6 +59,12 @@ class ListaDeProdutos extends ChangeNotifier {
 
     if (index >= 0) {
       _itens[index] = produtos;
+      DBUtil.update('produtos', {
+        'id': produtos.id,
+        'nome': produtos.nome,
+        'quantidade': produtos.quantidade,
+        'preco': produtos.preco,
+      });
 
       notifyListeners();
     }
@@ -69,9 +75,8 @@ class ListaDeProdutos extends ChangeNotifier {
 
     if (index >= 0) {
       // _itens.removeWhere((p) => p.id == produtos.id);
-
       DBUtil.delete('produtos', produtos.id);
-
+      _itens.removeAt(index);
       notifyListeners();
     }
   }

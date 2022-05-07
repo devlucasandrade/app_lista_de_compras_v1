@@ -20,7 +20,7 @@ class _ItemDaListaDeProdutosDoCarrinhoState
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Dismissible(
-        key: ValueKey('${widget.prods!.id}'),
+        key: ValueKey(widget.prods!.id),
         direction: DismissDirection.endToStart,
         background: Container(
           color: Colors.red,
@@ -33,13 +33,25 @@ class _ItemDaListaDeProdutosDoCarrinhoState
             color: Colors.white,
           ),
         ),
-        confirmDismiss: (_) {
+        onDismissed: (_) {
+          Provider.of<ListaDeProdutos>(context, listen: false)
+              .removerProdutos(widget.prods!);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                '${widget.prods!.nome} Excluido com Sucesso!',
+              ),
+            ),
+          );
+        },
+        confirmDismiss: (direction) {
           return showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
               title: const Text("Remover Item?"),
               content: const Text(
-                  "Tem certeza que quer remover o item do carrinho?"),
+                "Tem certeza que quer remover o item do carrinho?",
+              ),
               actions: [
                 TextButton(
                   child: const Text("NÃO"),
@@ -56,12 +68,6 @@ class _ItemDaListaDeProdutosDoCarrinhoState
               ],
             ),
           );
-        },
-        onDismissed: (_) {
-          setState(() {
-            Provider.of<ListaDeProdutos>(context, listen: false)
-                .removerProdutos(widget.prods!);
-          });
         },
         child: Card(
           shadowColor: Colors.blue,
