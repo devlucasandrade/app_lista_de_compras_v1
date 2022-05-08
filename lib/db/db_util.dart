@@ -29,11 +29,14 @@ class DBUtil {
     );
   }
 
-  static Future<void> update(String table, Map<String, Object> data) async {
+  static Future<void> update(
+      String table, Map<String, Object> data, String id) async {
     final db = await DBUtil.database();
     await db.update(
       table,
       data,
+      where: "id = ?",
+      whereArgs: [id],
       conflictAlgorithm: sql.ConflictAlgorithm.replace,
     );
   }

@@ -59,13 +59,15 @@ class ListaDeProdutos extends ChangeNotifier {
 
     if (index >= 0) {
       _itens[index] = produtos;
-      DBUtil.update('produtos', {
-        'id': produtos.id,
-        'nome': produtos.nome,
-        'quantidade': produtos.quantidade,
-        'preco': produtos.preco,
-      });
-
+      DBUtil.update(
+        'produtos',
+        {
+          'nome': produtos.nome,
+          'quantidade': produtos.quantidade,
+          'preco': produtos.preco,
+        },
+        '${produtos.id}',
+      );
       notifyListeners();
     }
   }
