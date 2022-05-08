@@ -28,12 +28,14 @@ class ListaDeProdutos extends ChangeNotifier {
 
   void salvarProdutos(Map<String, Object> produto) {
     bool temId = produto['id'] != null;
+    bool temPreco = produto['preco'] != null;
+    print(produto['preco']);
 
     final produtos = Produtos(
       id: temId ? produto['id'] as String : Random().nextDouble().toString(),
       nome: produto['nome'] as String,
       quantidade: produto['quantidade'] as int,
-      preco: produto['preco'] as double,
+      preco: temPreco ? produto['preco'] as double : produto['preco'] = 0.0,
     );
 
     if (temId) {
@@ -68,6 +70,7 @@ class ListaDeProdutos extends ChangeNotifier {
         },
         '${produtos.id}',
       );
+
       notifyListeners();
     }
   }
