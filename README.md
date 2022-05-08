@@ -74,7 +74,7 @@ flutter run
 
 ## Observações
 
-- Os créditos dos assets do projeto pertemcem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki.
-- O crédito do projeto pertemce ao site: [Dighital](https://www.flaticon.com/br/autores/dighital).
+- Os créditos dos assets do projeto pertencem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki.
+- O crédito do ícone do projeto pretence ao site: [Dighital](https://www.flaticon.com/br/autores/dighital).
 
 - Aplicativo em fase de testes.
