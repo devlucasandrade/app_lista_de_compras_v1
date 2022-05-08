@@ -23,7 +23,7 @@
 ## Descrição do projeto 
 
 <p align="justify">
-Projeto em desenvolvimento, para aplicação de conhecimentos adiquiridos no estudos de Flutter e lógica de programação.
+Projeto em desenvolvimento, para aplicação de conhecimentos adquiridos no estudos de Flutter e lógica de programação.
 
 A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazia uma lista em papel e usava a calculadora, para ter noção do quanto estaria o valor total das minhas compras. Com esse aplicativo, consigo adicionar os itens da lista e usá-lo, atualizando os preços, tendo assim a informação do subtotal e total de valor do carrinho.
 </p>

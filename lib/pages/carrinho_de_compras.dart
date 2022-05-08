@@ -41,7 +41,7 @@ class CarrinhoDeCompras extends StatelessWidget {
             .carregarProdutos(),
         builder: (context, snapshot) =>
             snapshot.connectionState == ConnectionState.none
-                ? Center(
+                ? const Center(
                     child: Text('Nenhum produto cadastrado.'),
                   )
                 : Consumer<ListaDeProdutos>(

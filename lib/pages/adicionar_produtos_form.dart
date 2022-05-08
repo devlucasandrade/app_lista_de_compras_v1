@@ -47,6 +47,14 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
       listen: false,
     ).salvarProdutos(_formData);
 
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Produto adicionado com sucesso!',
+        ),
+      ),
+    );
+
     Navigator.of(context).pop();
   }
 
