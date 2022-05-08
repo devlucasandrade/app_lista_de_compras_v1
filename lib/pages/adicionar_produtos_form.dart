@@ -50,12 +50,6 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
     Navigator.of(context).pop();
   }
 
-  final _controller = TextEditingController();
-
-  void limparCampos() {
-    _controller.clear();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

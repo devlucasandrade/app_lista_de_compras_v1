@@ -1,13 +1,30 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:lista_de_compras2/data/lista_mocada.dart';
+import 'package:lista_de_compras2/db/db_util.dart';
 import 'package:lista_de_compras2/models/produto.dart';
+import 'package:sqflite/sqflite.dart';
 
-class ListaDeProdutos with ChangeNotifier {
-  final List<Produtos> _itens = [];
+class ListaDeProdutos extends ChangeNotifier {
+  late Database db;
+  List<Produtos> _itens = [];
 
   List<Produtos> get itens => [..._itens];
+
+  Future<void> carregarProdutos() async {
+    final dataList = await DBUtil.getData('produtos');
+    _itens = dataList
+        .map(
+          (item) => Produtos(
+            id: item['id'],
+            nome: item['nome'],
+            quantidade: item['quantidade'],
+            preco: item['preco'],
+          ),
+        )
+        .toList();
+    notifyListeners();
+  }
 
   void salvarProdutos(Map<String, Object> produto) {
     bool temId = produto['id'] != null;
@@ -28,6 +45,12 @@ class ListaDeProdutos with ChangeNotifier {
 
   void adicionarProdutos(Produtos produtos) {
     _itens.add(produtos);
+    DBUtil.insert('produtos', {
+      'id': produtos.id,
+      'nome': produtos.nome,
+      'quantidade': produtos.quantidade,
+      'preco': produtos.preco,
+    });
     notifyListeners();
   }
 
@@ -36,7 +59,15 @@ class ListaDeProdutos with ChangeNotifier {
 
     if (index >= 0) {
       _itens[index] = produtos;
-
+      DBUtil.update(
+        'produtos',
+        {
+          'nome': produtos.nome,
+          'quantidade': produtos.quantidade,
+          'preco': produtos.preco,
+        },
+        '${produtos.id}',
+      );
       notifyListeners();
     }
   }
@@ -45,7 +76,9 @@ class ListaDeProdutos with ChangeNotifier {
     int index = _itens.indexWhere((p) => p.id == produtos.id);
 
     if (index >= 0) {
-      _itens.removeWhere((p) => p.id == produtos.id);
+      // _itens.removeWhere((p) => p.id == produtos.id);
+      DBUtil.delete('produtos', produtos.id);
+      _itens.removeAt(index);
       notifyListeners();
     }
   }

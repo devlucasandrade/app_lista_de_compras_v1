@@ -3,17 +3,24 @@ import 'package:lista_de_compras2/models/lista_de_produtos.dart';
 import 'package:lista_de_compras2/models/produto.dart';
 import 'package:provider/provider.dart';
 
-class ItemDaListaDeProdutosDoCarrinho extends StatelessWidget {
+class ItemDaListaDeProdutosDoCarrinho extends StatefulWidget {
   final Produtos? prods;
   const ItemDaListaDeProdutosDoCarrinho(this.prods, {Key? key})
       : super(key: key);
 
   @override
+  State<ItemDaListaDeProdutosDoCarrinho> createState() =>
+      _ItemDaListaDeProdutosDoCarrinhoState();
+}
+
+class _ItemDaListaDeProdutosDoCarrinhoState
+    extends State<ItemDaListaDeProdutosDoCarrinho> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Dismissible(
-        key: ValueKey(prods!.id),
+        key: ValueKey(widget.prods!.id),
         direction: DismissDirection.endToStart,
         background: Container(
           color: Colors.red,
@@ -26,13 +33,25 @@ class ItemDaListaDeProdutosDoCarrinho extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        confirmDismiss: (_) {
+        onDismissed: (_) {
+          Provider.of<ListaDeProdutos>(context, listen: false)
+              .removerProdutos(widget.prods!);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                '${widget.prods!.nome} Excluido com Sucesso!',
+              ),
+            ),
+          );
+        },
+        confirmDismiss: (direction) {
           return showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
               title: const Text("Remover Item?"),
               content: const Text(
-                  "Tem certeza que quer remover o item do carrinho?"),
+                "Tem certeza que quer remover o item do carrinho?",
+              ),
               actions: [
                 TextButton(
                   child: const Text("NÃO"),
@@ -50,10 +69,6 @@ class ItemDaListaDeProdutosDoCarrinho extends StatelessWidget {
             ),
           );
         },
-        onDismissed: (_) {
-          Provider.of<ListaDeProdutos>(context, listen: false)
-              .removerProdutos(prods!);
-        },
         child: Card(
           shadowColor: Colors.blue,
           elevation: 4,
@@ -63,7 +78,7 @@ class ItemDaListaDeProdutosDoCarrinho extends StatelessWidget {
               size: 30,
             ),
             title: Text(
-              prods!.nome,
+              widget.prods!.nome,
               style: const TextStyle(
                 fontSize: 18,
               ),
@@ -71,16 +86,16 @@ class ItemDaListaDeProdutosDoCarrinho extends StatelessWidget {
             subtitle: Row(
               children: [
                 Text(
-                  'Qtd: ${prods!.quantidade}',
+                  'Qtd: ${widget.prods!.quantidade}',
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  'Preço R\$ ${prods!.preco.toStringAsFixed(2)}',
+                  'Preço R\$ ${widget.prods!.preco.toStringAsFixed(2)}',
                 ),
               ],
             ),
             trailing: Text(
-              'R\$ ${(prods!.quantidade * prods!.preco).toStringAsFixed(2)}',
+              'R\$ ${(widget.prods!.quantidade * widget.prods!.preco).toStringAsFixed(2)}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -88,7 +103,7 @@ class ItemDaListaDeProdutosDoCarrinho extends StatelessWidget {
             ),
             onTap: () {
               Navigator.of(context)
-                  .pushNamed('/adicionarproduto', arguments: prods);
+                  .pushNamed('/adicionarproduto', arguments: widget.prods);
             },
           ),
         ),
