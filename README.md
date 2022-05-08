@@ -30,15 +30,15 @@ A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazi
 
 ## Funcionalidades
 
-`Funcionalidade 1:` Adicionar produtos, criando uma lista que será utilizada no momento da compra no supermercado.
+`01:` Adicionar produtos, criando uma lista que será utilizada no momento da compra no supermercado.
 
-`Funcionalidade 2:` Atualização dos dados, dessa forma podendo criar a lista com itens com valor zerado para no supermercado atualizar os preços, tendo assim o subtotal gasto naquele item e o total gasto naquela compra.
+`02:` Atualização dos dados, dessa forma podendo criar a lista com itens com valor zerado para no supermercado atualizar os preços, tendo assim o subtotal gasto naquele item e o total gasto naquela compra.
 
-`Funcionalidade 3:` Excluir item, caso tenha colocado um item que tenha desistido da compra, basta deslizar para excluir. A exclusão precisa de confirmação do usuário.
+`03:` Excluir item, caso tenha colocado um item que tenha desistido da compra, basta deslizar para excluir. A exclusão precisa de confirmação do usuário.
 
-`Funcionalidade 4:` Total geral dos produtos adicionados no carrinho, apresentando assim ao usuário qual o valor daquela compra.
+`04:` Total geral dos produtos adicionados no carrinho, apresentando assim ao usuário qual o valor daquela compra.
 
-`Funcionalidade 5:` Um passo-a-passo de como utilizar o aplicativo foi colocado no drawer - Dúvidas e no botão de ? na tela principal. 
+`05:` Um passo-a-passo de como utilizar o aplicativo foi colocado no drawer - Dúvidas e no botão de ? na tela principal. 
 
 ## Aplicação
 
@@ -75,5 +75,6 @@ flutter run
 ## Observações
 
 - Os créditos dos assets do projeto pertemcem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki.
+- O crédito do projeto pertemce ao site: [Dighital](https://www.flaticon.com/br/autores/dighital).
 
 - Aplicativo em fase de testes.
