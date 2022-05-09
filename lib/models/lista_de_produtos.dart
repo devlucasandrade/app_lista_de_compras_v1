@@ -29,7 +29,6 @@ class ListaDeProdutos extends ChangeNotifier {
   void salvarProdutos(Map<String, Object> produto) {
     bool temId = produto['id'] != null;
     bool temPreco = produto['preco'] != null;
-    print(produto['preco']);
 
     final produtos = Produtos(
       id: temId ? produto['id'] as String : Random().nextDouble().toString(),

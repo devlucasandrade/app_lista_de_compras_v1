@@ -29,7 +29,7 @@ class _CustomBottomnavigatorbarState extends State<CustomBottomnavigatorbar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                real.format(widget.total),
+                'Total ' + real.format(widget.total),
                 // 'Total R\$ ' + widget.total.toStringAsFixed(2),
                 style: const TextStyle(
                   fontSize: 20,

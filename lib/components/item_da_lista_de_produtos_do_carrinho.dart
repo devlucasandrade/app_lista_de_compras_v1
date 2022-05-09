@@ -21,7 +21,7 @@ class _ItemDaListaDeProdutosDoCarrinhoState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       child: Dismissible(
         key: ValueKey(widget.prods!.id),
         direction: DismissDirection.endToStart,
@@ -29,7 +29,7 @@ class _ItemDaListaDeProdutosDoCarrinhoState
           color: Colors.red,
           alignment: Alignment.centerRight,
           padding: const EdgeInsets.only(right: 30),
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           child: const Icon(
             Icons.delete,
             size: 30,
@@ -81,10 +81,13 @@ class _ItemDaListaDeProdutosDoCarrinhoState
               Icons.shopping_cart_outlined,
               size: 30,
             ),
-            title: Text(
-              widget.prods!.nome,
-              style: const TextStyle(
-                fontSize: 18,
+            title: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                widget.prods!.nome,
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
               ),
             ),
             subtitle: Row(
@@ -98,13 +101,19 @@ class _ItemDaListaDeProdutosDoCarrinhoState
                 ),
               ],
             ),
-            trailing: Text(
-              real.format(
-                (widget.prods!.quantidade * widget.prods!.preco),
-              ),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+            trailing: Container(
+              width: 90,
+              child: Expanded(
+                child: Text(
+                  real.format(
+                    (widget.prods!.quantidade * widget.prods!.preco),
+                  ),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.end,
+                ),
               ),
             ),
             onTap: () {

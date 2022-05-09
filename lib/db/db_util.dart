@@ -7,18 +7,42 @@ class DBUtil {
     return sql.openDatabase(
       path.join(dbPath, 'compras.db'),
       onCreate: (db, version) {
-        return db.execute('''
+        return _onCreate;
+        // db.execute('''
+        //   CREATE TABLE produtos (
+        //     id TEXT PRIMARY KEY,
+        //     nome TEXT,
+        //     quantidade INT,
+        //     preco REAL
+        //   )
+        // ''');
+      },
+      version: 1,
+    );
+  }
+
+  static _onCreate(db, verison) async {
+    await db.execute(_produtos);
+    await db.execute(_compras);
+  }
+
+  static String get _produtos => '''
           CREATE TABLE produtos (
             id TEXT PRIMARY KEY,
             nome TEXT,
             quantidade INT,
             preco REAL
           )
-        ''');
-      },
-      version: 1,
-    );
-  }
+        ''';
+
+  static String get _compras => '''
+          CREATE TABLE compras (
+            id TEXT PRIMARY KEY,
+            nome TEXT,
+            data DATE,
+            produtoId TEXT
+          )
+        ''';
 
   static Future<void> insert(String table, Map<String, Object> data) async {
     final db = await DBUtil.database();

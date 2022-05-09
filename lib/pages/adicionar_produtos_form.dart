@@ -66,7 +66,7 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade300,
+      backgroundColor: Colors.blue.shade100,
       appBar: AppBar(
         title: const Text('Adicionar Produtos'),
         centerTitle: true,
@@ -76,15 +76,47 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
           child: Container(
             padding: const EdgeInsets.all(10),
-            color: Colors.blue.shade100,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
                   TextFormField(
                     initialValue: _formData['nome']?.toString(),
-                    decoration:
-                        const InputDecoration(labelText: 'Nome do Produto'),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.sort_by_alpha),
+                      labelText: 'Nome do Produto',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 2.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     textCapitalization: TextCapitalization.sentences,
@@ -106,7 +138,37 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                   const SizedBox(height: 10),
                   TextFormField(
                     initialValue: _formData['quantidade']?.toString(),
-                    decoration: const InputDecoration(labelText: 'Quantidade'),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.calculate_outlined),
+                      labelText: 'Quantidade',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 2.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 2.0,
+                        ),
+                      ),
+                    ),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     onSaved: (quantidade) =>
@@ -119,14 +181,46 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                         return 'Informe a quantidade.';
                       }
 
+                      if (quantidade > 999) {
+                        return 'Informe a quantidade correta.';
+                      }
+
                       return null;
                     },
                   ),
                   const SizedBox(height: 10),
                   TextFormField(
                     initialValue: _formData['preco']?.toString(),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Preço',
+                      prefixIcon: Icon(Icons.monetization_on_outlined),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.blue,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 2.0,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 2.0,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.red,
+                          width: 2.0,
+                        ),
+                      ),
                     ),
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.number,
@@ -135,6 +229,10 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                     inputFormatters: [
                       RealMask(),
                     ],
+                    onFieldSubmitted: (value) {
+                      _submitForm();
+                      print('aqui');
+                    },
                     onSaved: (preco) {
                       _formData['preco'] = double.parse(
                         preco!.replaceAll(RegExp(r','), '.'),
@@ -149,15 +247,20 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                         return 'Informe Zero ou um valor positivo.';
                       }
 
+                      if (preco > 9999) {
+                        return 'Informe o valor correto.';
+                      }
+
                       return null;
                     },
                   ),
                   const SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 120,
+                        width: MediaQuery.of(context).size.width * .35,
+                        height: 50,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Colors.grey.shade600,
@@ -170,7 +273,8 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                         ),
                       ),
                       SizedBox(
-                        width: 120,
+                        width: MediaQuery.of(context).size.width * .35,
+                        height: 50,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue.shade800,
