@@ -8,14 +8,6 @@ class DBUtil {
       path.join(dbPath, 'compras.db'),
       onCreate: (db, version) {
         return _onCreate;
-        // db.execute('''
-        //   CREATE TABLE produtos (
-        //     id TEXT PRIMARY KEY,
-        //     nome TEXT,
-        //     quantidade INT,
-        //     preco REAL
-        //   )
-        // ''');
       },
       version: 1,
     );

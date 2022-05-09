@@ -74,223 +74,233 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    initialValue: _formData['nome']?.toString(),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.sort_by_alpha),
-                      labelText: 'Nome do Produto',
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.blue,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 2.0,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    textCapitalization: TextCapitalization.sentences,
-                    onSaved: (nome) => _formData['nome'] = nome ?? '',
-                    validator: (_nome) {
-                      final nome = _nome ?? '';
-
-                      if (nome.trim().isEmpty) {
-                        return 'Nome do produto é obrigatório.';
-                      }
-
-                      if (nome.trim().length < 3) {
-                        return 'Nome precisa ter no mínimo 3 letras.';
-                      }
-
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    initialValue: _formData['quantidade']?.toString(),
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.calculate_outlined),
-                      labelText: 'Quantidade',
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.blue,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 2.0,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    onSaved: (quantidade) =>
-                        _formData['quantidade'] = int.parse(quantidade ?? '0'),
-                    validator: (_quantidade) {
-                      final quantidadeString = _quantidade ?? '';
-                      final quantidade = int.tryParse(quantidadeString) ?? -1;
-
-                      if (quantidade <= 0) {
-                        return 'Informe a quantidade.';
-                      }
-
-                      if (quantidade > 999) {
-                        return 'Informe a quantidade correta.';
-                      }
-
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    initialValue: _formData['preco']?.toString(),
-                    decoration: InputDecoration(
-                      labelText: 'Preço',
-                      prefixIcon: Icon(Icons.monetization_on_outlined),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.blue,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 2.0,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
-                        ),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.number,
-
-                    // Formatar valores para REAL BR
-                    inputFormatters: [
-                      RealMask(),
-                    ],
-                    onFieldSubmitted: (value) {
-                      _submitForm();
-                      print('aqui');
-                    },
-                    onSaved: (preco) {
-                      _formData['preco'] = double.parse(
-                        preco!.replaceAll(RegExp(r','), '.'),
-                      );
-                    },
-
-                    validator: (_preco) {
-                      final precoString = _preco!.replaceAll(RegExp(r','), '.');
-                      final preco = double.tryParse(precoString) ?? -1;
-
-                      if (preco < 0) {
-                        return 'Informe Zero ou um valor positivo.';
-                      }
-
-                      if (preco > 9999) {
-                        return 'Informe o valor correto.';
-                      }
-
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .35,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.grey.shade600,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(borda),
+                      TextFormField(
+                        initialValue: _formData['nome']?.toString(),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.sort_by_alpha),
+                          labelText: 'Nome do Produto',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.blue,
                             ),
                           ),
-                          child: const Text('CANCELAR'),
-                          onPressed: () => Navigator.of(context).pop(),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 2.0,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        textCapitalization: TextCapitalization.sentences,
+                        onSaved: (nome) => _formData['nome'] = nome ?? '',
+                        validator: (_nome) {
+                          final nome = _nome ?? '';
+
+                          if (nome.trim().isEmpty) {
+                            return 'Nome do produto é obrigatório.';
+                          }
+
+                          if (nome.trim().length < 3) {
+                            return 'Nome precisa ter no mínimo 3 letras.';
+                          }
+
+                          return null;
+                        },
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .35,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue.shade800,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(borda),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: _formData['quantidade']?.toString(),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.calculate_outlined),
+                          labelText: 'Quantidade',
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.blue,
                             ),
                           ),
-                          child: const Text('SALVAR'),
-                          onPressed: _submitForm,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 2.0,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
                         ),
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        onSaved: (quantidade) => _formData['quantidade'] =
+                            int.parse(quantidade ?? '0'),
+                        validator: (_quantidade) {
+                          final quantidadeString = _quantidade ?? '';
+                          final quantidade =
+                              int.tryParse(quantidadeString) ?? -1;
+
+                          if (quantidade <= 0) {
+                            return 'Informe a quantidade.';
+                          }
+
+                          if (quantidade > 999) {
+                            return 'Informe a quantidade correta.';
+                          }
+
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: _formData['preco']?.toString(),
+                        decoration: InputDecoration(
+                          labelText: 'Preço',
+                          prefixIcon: Icon(Icons.monetization_on_outlined),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.blue,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 2.0,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
+                        ),
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.number,
+
+                        // Formatar valores para REAL BR
+                        inputFormatters: [
+                          RealMask(),
+                        ],
+                        onFieldSubmitted: (value) {
+                          _submitForm();
+                          print('aqui');
+                        },
+                        onSaved: (preco) {
+                          _formData['preco'] = double.parse(
+                            preco!.replaceAll(RegExp(r','), '.'),
+                          );
+                        },
+
+                        validator: (_preco) {
+                          final precoString =
+                              _preco!.replaceAll(RegExp(r','), '.');
+                          final preco = double.tryParse(precoString) ?? -1;
+
+                          if (preco < 0) {
+                            return 'Informe Zero ou um valor positivo.';
+                          }
+
+                          if (preco > 9999) {
+                            return 'Informe o valor correto.';
+                          }
+
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .35,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.grey.shade600,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(borda),
+                                ),
+                              ),
+                              child: const Text('CANCELAR'),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * .35,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue.shade800,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(borda),
+                                ),
+                              ),
+                              child: const Text('SALVAR'),
+                              onPressed: _submitForm,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
+              Image.asset(
+                'assets/images/image01.png',
+                fit: BoxFit.cover,
+              ),
+            ],
           ),
         ),
       ),

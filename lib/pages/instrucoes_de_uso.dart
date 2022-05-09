@@ -101,7 +101,7 @@ class _InstrucoesDeUsoState extends State<InstrucoesDeUso> {
                 'COMEÇAR',
                 style: TextStyle(fontSize: 22),
               ),
-              onPressed: () => Navigator.of(context).pushNamed('/'),
+              onPressed: () => Navigator.of(context).pushReplacementNamed('/'),
             )
           : Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),

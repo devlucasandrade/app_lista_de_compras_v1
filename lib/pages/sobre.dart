@@ -1,7 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-class Sobre extends StatelessWidget {
+class Sobre extends StatefulWidget {
   const Sobre({Key? key}) : super(key: key);
+
+  @override
+  State<Sobre> createState() => _SobreState();
+}
+
+class _SobreState extends State<Sobre> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,17 +45,16 @@ class Sobre extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Carrinho de Compras',
+            Text(
+              _packageInfo.appName,
               style: TextStyle(
                 fontSize: 28,
               ),
             ),
-            const Text(
-              'Versão: Beta',
+            Text(
+              'Versão: ' + _packageInfo.version,
               style: TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
               ),
             ),
             // const SizedBox(height: 20),
