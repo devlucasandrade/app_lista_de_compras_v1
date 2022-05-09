@@ -108,7 +108,7 @@ class _ItemDaListaDeProdutosDoCarrinhoState
             ),
             trailing: Container(
               width: 90,
-              child: Expanded(
+              child: SingleChildScrollView(
                 child: Text(
                   real.format(
                     (widget.prods!.quantidade * widget.prods!.preco),

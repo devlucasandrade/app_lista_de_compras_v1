@@ -234,7 +234,6 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                         ],
                         onFieldSubmitted: (value) {
                           _submitForm();
-                          print('aqui');
                         },
                         onSaved: (preco) {
                           _formData['preco'] = double.parse(
