@@ -58,7 +58,12 @@ class _ItemDaListaDeProdutosDoCarrinhoState
               ),
               actions: [
                 TextButton(
-                  child: const Text("NÃO"),
+                  child: const Text(
+                    "NÃO",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
