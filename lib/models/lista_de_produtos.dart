@@ -28,13 +28,12 @@ class ListaDeProdutos extends ChangeNotifier {
 
   void salvarProdutos(Map<String, Object> produto) {
     bool temId = produto['id'] != null;
-    bool temPreco = produto['preco'] != null;
 
     final produtos = Produtos(
       id: temId ? produto['id'] as String : Random().nextDouble().toString(),
       nome: produto['nome'] as String,
       quantidade: produto['quantidade'] as int,
-      preco: temPreco ? produto['preco'] as double : produto['preco'] = 0.0,
+      preco: produto['preco'] as double,
     );
 
     if (temId) {
@@ -69,7 +68,6 @@ class ListaDeProdutos extends ChangeNotifier {
         },
         '${produtos.id}',
       );
-
       notifyListeners();
     }
   }
@@ -83,6 +81,11 @@ class ListaDeProdutos extends ChangeNotifier {
       _itens.removeAt(index);
       notifyListeners();
     }
+  }
+
+  void removerTodos() {
+    DBUtil.deleteAll('produtos');
+    notifyListeners();
   }
 
   int get count {

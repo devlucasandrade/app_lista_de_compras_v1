@@ -6,9 +6,14 @@ import 'package:lista_de_compras2/models/lista_de_produtos.dart';
 import 'package:lista_de_compras2/models/produto.dart';
 import 'package:provider/provider.dart';
 
-class CarrinhoDeCompras extends StatelessWidget {
+class CarrinhoDeCompras extends StatefulWidget {
   const CarrinhoDeCompras({Key? key}) : super(key: key);
 
+  @override
+  State<CarrinhoDeCompras> createState() => _CarrinhoDeComprasState();
+}
+
+class _CarrinhoDeComprasState extends State<CarrinhoDeCompras> {
   @override
   Widget build(BuildContext context) {
     final ListaDeProdutos produtos = Provider.of(context);
@@ -25,13 +30,40 @@ class CarrinhoDeCompras extends StatelessWidget {
         title: const Text('Carrinho de Compras'),
         centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 3),
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/instrucoes');
-              },
-              icon: const Icon(Icons.help_outline),
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text("Limpar Lista?"),
+                  content: const Text(
+                    "Tem certeza que quer remover TODOS o item do carrinho?",
+                  ),
+                  actions: [
+                    TextButton(
+                      child: const Text(
+                        "NÃO",
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    TextButton(
+                      child: const Text("SIM"),
+                      onPressed: () {
+                        produtos.removerTodos();
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.delete_forever_outlined,
             ),
           ),
         ],

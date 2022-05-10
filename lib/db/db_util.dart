@@ -7,34 +7,26 @@ class DBUtil {
     return sql.openDatabase(
       path.join(dbPath, 'compras.db'),
       onCreate: (db, version) {
-        return _onCreate;
-      },
-      version: 1,
-    );
-  }
-
-  static _onCreate(db, verison) async {
-    await db.execute(_produtos);
-    await db.execute(_compras);
-  }
-
-  static String get _produtos => '''
+        return db.execute('''
           CREATE TABLE produtos (
             id TEXT PRIMARY KEY,
             nome TEXT,
             quantidade INT,
             preco REAL
           )
-        ''';
-
-  static String get _compras => '''
+        '''
+            '''
           CREATE TABLE compras (
-            id TEXT PRIMARY KEY,
+            compras_id TEXT PRIMARY KEY,
+            produtos_id TEXT,
             nome TEXT,
-            data DATE,
-            produtoId TEXT
+            data TEXT,
           )
-        ''';
+        ''');
+      },
+      version: 1,
+    );
+  }
 
   static Future<void> insert(String table, Map<String, Object> data) async {
     final db = await DBUtil.database();
@@ -60,6 +52,11 @@ class DBUtil {
   static Future<void> delete(String table, String id) async {
     final db = await DBUtil.database();
     await db.delete(table, where: "id = ?", whereArgs: [id]);
+  }
+
+  static Future<void> deleteAll(String table) async {
+    final db = await DBUtil.database();
+    await db.delete(table);
   }
 
   static Future<List<Map<String, dynamic>>> getData(String table) async {

@@ -195,7 +195,7 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                       TextFormField(
                         initialValue: _formData['preco']?.toString(),
                         decoration: InputDecoration(
-                          labelText: 'Preço',
+                          labelText: 'Preço Unitário',
                           prefixIcon: Icon(Icons.monetization_on_outlined),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
