@@ -30,40 +30,68 @@ class _CarrinhoDeComprasState extends State<CarrinhoDeCompras> {
         title: const Text('Carrinho de Compras'),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text("Limpar Lista?"),
-                  content: const Text(
-                    "Tem certeza que quer remover TODOS o item do carrinho?",
-                  ),
-                  actions: [
-                    TextButton(
-                      child: const Text(
-                        "NÃO",
-                        style: TextStyle(
-                          color: Colors.red,
-                        ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              onPressed: () {
+                if (produtos.count > 0) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Limpar Lista?"),
+                      content: const Text(
+                        "Tem certeza que quer remover TODOS os itens do carrinho?",
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            "NÃO",
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text("SIM"),
+                          onPressed: () {
+                            produtos.removerTodos();
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
                     ),
-                    TextButton(
-                      child: const Text("SIM"),
-                      onPressed: () {
-                        produtos.removerTodos();
-                        Navigator.of(context).pop();
-                      },
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Lista Vazia"),
+                      content: const Text(
+                        "A lista de produtos atual já está vazia. Cadastre novos produtos para começar a usar.",
+                      ),
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            "SAIR",
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              );
-            },
-            icon: Icon(
-              Icons.delete_forever_outlined,
+                  );
+                }
+              },
+              icon: Icon(
+                Icons.delete_forever_outlined,
+              ),
             ),
           ),
         ],
@@ -78,15 +106,18 @@ class _CarrinhoDeComprasState extends State<CarrinhoDeCompras> {
                   )
                 : Consumer<ListaDeProdutos>(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Para começar a usar, adicione produtos ao carrinho, clicando no botâo ADICIONAR logo abaixo.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 80, 30, 0),
+                            child: const Text(
+                              'Para começar a usar, adicione produtos ao carrinho, clicando no botâo ADICIONAR logo abaixo.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                           Image.asset(
