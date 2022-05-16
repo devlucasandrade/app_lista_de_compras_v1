@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lista_de_compras2/components/app_drawer.dart';
 import 'package:lista_de_compras2/components/compras_item.dart';
 import 'package:lista_de_compras2/models/compras_lista.dart';
-import 'package:lista_de_compras2/pages/excluir_add_lista_dialog.dart';
+import 'package:lista_de_compras2/pages/add_lista_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ListaDeCompras extends StatefulWidget {
@@ -66,7 +66,6 @@ class _ListaDeCompras extends State<ListaDeCompras> {
                   ),
       ),
       floatingActionButton: Container(
-        width: 100,
         height: 45,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(

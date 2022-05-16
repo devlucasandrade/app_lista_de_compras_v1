@@ -3,7 +3,7 @@ import 'package:lista_de_compras2/components/custom_bottomnavigatorbar.dart';
 import 'package:lista_de_compras2/components/item_da_lista_de_produtos_do_carrinho.dart';
 import 'package:lista_de_compras2/models/produtos_lista.dart';
 import 'package:lista_de_compras2/models/produto.dart';
-import 'package:lista_de_compras2/pages/excluir_add_produtos_dialog.dart';
+import 'package:lista_de_compras2/pages/add_produtos_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ListaDeProdutos extends StatefulWidget {
@@ -146,7 +146,6 @@ class _ListaDeProdutos extends State<ListaDeProdutos> {
         total: totalCarrinho,
       ),
       floatingActionButton: Container(
-        width: 100,
         height: 45,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -155,7 +154,7 @@ class _ListaDeProdutos extends State<ListaDeProdutos> {
             primary: Colors.white,
           ),
           child: Text(
-            '+ LISTA',
+            '+ PRODUTO',
             style: TextStyle(
               color: Colors.blue.shade800,
             ),

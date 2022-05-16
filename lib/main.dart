@@ -5,7 +5,6 @@ import 'package:lista_de_compras2/models/produtos_lista.dart';
 import 'package:lista_de_compras2/pages/lista_de_compras.dart';
 import 'package:lista_de_compras2/pages/lista_de_produtos.dart';
 import 'package:lista_de_compras2/pages/instrucoes_de_uso.dart';
-import 'package:lista_de_compras2/pages/sobre.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -37,7 +36,6 @@ class MyApp extends StatelessWidget {
           '/': (context) => ListaDeCompras(),
           '/listadeprodutos': (context) => const ListaDeProdutos(),
           '/instrucoes': (context) => const InstrucoesDeUso(),
-          '/sobre': (context) => const Sobre(),
         },
       ),
     );
