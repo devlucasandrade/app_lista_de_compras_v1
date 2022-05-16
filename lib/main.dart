@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lista_de_compras2/models/lista_de_produtos.dart';
-import 'package:lista_de_compras2/pages/adicionar_produtos_form.dart';
-import 'package:lista_de_compras2/pages/carrinho_de_compras.dart';
+import 'package:lista_de_compras2/models/compras_lista.dart';
+import 'package:lista_de_compras2/models/produtos_lista.dart';
+import 'package:lista_de_compras2/pages/lista_de_compras.dart';
+import 'package:lista_de_compras2/pages/lista_de_produtos.dart';
 import 'package:lista_de_compras2/pages/instrucoes_de_uso.dart';
 import 'package:lista_de_compras2/pages/sobre.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (ctx) => ListaDeProdutos(),
+          create: (ctx) => ProdutosLista(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => ComprasLista(),
         ),
       ],
       child: MaterialApp(
@@ -30,8 +34,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
-          '/': (context) => const CarrinhoDeCompras(),
-          '/adicionarproduto': (context) => const AdicionarProdutosForm(),
+          '/': (context) => ListaDeCompras(),
+          '/listadeprodutos': (context) => const ListaDeProdutos(),
           '/instrucoes': (context) => const InstrucoesDeUso(),
           '/sobre': (context) => const Sobre(),
         },

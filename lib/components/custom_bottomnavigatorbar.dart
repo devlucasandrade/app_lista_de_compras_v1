@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 class CustomBottomnavigatorbar extends StatefulWidget {
   final double total;
+
   const CustomBottomnavigatorbar({
     Key? key,
     required this.total,
@@ -26,29 +27,15 @@ class _CustomBottomnavigatorbarState extends State<CustomBottomnavigatorbar> {
           height: 60,
           color: Colors.blue,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Total ' + real.format(widget.total),
                 // 'Total R\$ ' + widget.total.toStringAsFixed(2),
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 22,
                   color: Colors.white,
                 ),
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                ),
-                child: Text(
-                  'ADICIONAR',
-                  style: TextStyle(
-                    color: Colors.blue.shade800,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/adicionarproduto');
-                },
               ),
             ],
           ),

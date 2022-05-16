@@ -5,28 +5,34 @@ class DBUtil {
   static Future<sql.Database> database() async {
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase(
-      path.join(dbPath, 'compras.db'),
-      onCreate: (db, version) {
-        return db.execute('''
+      path.join(dbPath, 'lista_compras.db'),
+      onCreate: _onCreate,
+      version: 1,
+    );
+  }
+
+  static _onCreate(db, version) {
+    db.execute(_produtos);
+    db.execute(_compras);
+  }
+
+  static String get _produtos => '''
           CREATE TABLE produtos (
             id TEXT PRIMARY KEY,
             nome TEXT,
             quantidade INT,
-            preco REAL
+            preco REAL,
+            comprasid TEXT
           )
-        '''
-            '''
+        ''';
+
+  static String get _compras => '''
           CREATE TABLE compras (
-            compras_id TEXT PRIMARY KEY,
-            produtos_id TEXT,
+            id TEXT PRIMARY KEY,
             nome TEXT,
-            data TEXT,
+            data TEXT
           )
-        ''');
-      },
-      version: 1,
-    );
-  }
+        ''';
 
   static Future<void> insert(String table, Map<String, Object> data) async {
     final db = await DBUtil.database();

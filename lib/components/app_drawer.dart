@@ -42,18 +42,9 @@ class _AppDrawerState extends State<AppDrawer> {
           Card(
             color: Colors.blue.shade100,
             child: ListTile(
-              leading: const Icon(Icons.shopping_cart_rounded, size: 30),
-              title: const Text('Carrinho de Compras'),
-              onTap: () => Navigator.of(context).pop(),
-            ),
-          ),
-          Card(
-            color: Colors.blue.shade100,
-            child: ListTile(
-              leading: const Icon(Icons.add_shopping_cart_outlined, size: 30),
-              title: const Text('Adicionar Produtos'),
-              onTap: () =>
-                  Navigator.of(context).popAndPushNamed('/adicionarproduto'),
+              leading: const Icon(Icons.list, size: 30),
+              title: const Text('Lista de Compras'),
+              onTap: () => Navigator.of(context).popAndPushNamed('/'),
             ),
           ),
           Card(

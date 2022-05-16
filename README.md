@@ -16,11 +16,13 @@
 
 - [Executando o projeto](#executando-o-projeto)
 
+- [Histório de Versões](#histórico-de-versões)
+
 - [Observações](#observações)
 
 
 
-## Descrição do projeto 
+## Descrição do projeto
 
 <p align="justify">
 Projeto em desenvolvimento, para aplicação de conhecimentos adiquiridos no estudos de Flutter e lógica de programação.
@@ -71,6 +73,29 @@ flutter pub get
 ```
 flutter run
 ```
+
+
+###
+
+## Histórico de Versões
+* 1.3.6
+   * Adição e edição de lista e produtos com showdialog + form
+   * Retirada da barra de navegação da lista princial e troca de botão, passando a ser flutuante.
+   * Retirada do botão da barra de navegação, passando a ser flutuante. 
+
+
+* 1.1.6
+   * Conversão dos valores de entrada e visuais para BRL
+   * Criação de botão para limpar lista de produtos
+   * Correção de bug´s e correções menores
+   * Alertas ao usuário
+
+
+* 1.0.0 - Versão Inicial
+   * Lista cadastrando produtos, realizando o subtotal e total realizado nas compras
+   * Instruções de uso
+
+
 
 ## Observações
 
