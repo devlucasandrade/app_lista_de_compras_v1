@@ -26,7 +26,6 @@ class _ListaDeProdutos extends State<ListaDeProdutos> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.blue.shade300,
       appBar: AppBar(
         title: const Text('Lista de Produtos'),
         centerTitle: true,

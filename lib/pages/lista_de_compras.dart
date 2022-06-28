@@ -18,7 +18,6 @@ class _ListaDeCompras extends State<ListaDeCompras> {
     final compras = Provider.of<ComprasLista>(context);
 
     return Scaffold(
-      backgroundColor: Colors.blue.shade300,
       appBar: AppBar(
         title: const Text('Lista de Compras'),
         centerTitle: true,

@@ -85,36 +85,23 @@ class _ComprasItem extends State<ComprasItem> {
                 color: Colors.blue,
               ),
             ),
-            title: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Text(
-                widget.compras!.nome,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
+            title: Text(
+              widget.compras!.nome,
+              style: const TextStyle(
+                fontSize: 18,
               ),
             ),
             subtitle: Row(
               children: [
                 Icon(
                   Icons.calendar_month,
-                  size: 18,
+                  size: 16,
                 ),
+                const SizedBox(width: 5),
                 Text(widget.compras!.data),
               ],
             ),
-            trailing: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.orange,
-                ),
-                onPressed: () {
-                  openDialog();
-                },
-              ),
-            ),
+            onLongPress: () => openDialog(),
             onTap: () {
               Navigator.of(context)
                   .pushNamed('/listadeprodutos', arguments: widget.compras);

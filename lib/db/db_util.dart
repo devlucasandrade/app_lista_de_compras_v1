@@ -12,9 +12,17 @@ class DBUtil {
   }
 
   static _onCreate(db, version) {
-    db.execute(_produtos);
     db.execute(_compras);
+    db.execute(_produtos);
   }
+
+  static String get _compras => '''
+          CREATE TABLE compras (
+            id TEXT PRIMARY KEY,
+            nome TEXT,
+            data TEXT
+          )
+        ''';
 
   static String get _produtos => '''
           CREATE TABLE produtos (
@@ -23,14 +31,6 @@ class DBUtil {
             quantidade INT,
             preco REAL,
             comprasid TEXT
-          )
-        ''';
-
-  static String get _compras => '''
-          CREATE TABLE compras (
-            id TEXT PRIMARY KEY,
-            nome TEXT,
-            data TEXT
           )
         ''';
 

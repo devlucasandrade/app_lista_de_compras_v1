@@ -92,7 +92,7 @@ class _ItemDaListaDeProdutosDoCarrinhoState
             title: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Text(
-                widget.prods!.nome,
+                widget.prods!.id,
                 style: const TextStyle(
                   fontSize: 18,
                 ),
@@ -124,10 +124,8 @@ class _ItemDaListaDeProdutosDoCarrinhoState
                 ),
               ),
             ),
-            onTap: () {
+            onLongPress: () {
               openDialog();
-              // Navigator.of(context)
-              //     .pushNamed('/adicionarproduto', arguments: widget.prods);
             },
           ),
         ),

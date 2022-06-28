@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:lista_de_compras2/db/db_util.dart';
 import 'package:lista_de_compras2/models/compras.dart';
+import 'package:lista_de_compras2/models/produto.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ComprasLista extends ChangeNotifier {
@@ -22,6 +23,14 @@ class ComprasLista extends ChangeNotifier {
             id: item['id'],
             nome: item['nome'],
             data: item['data'],
+            produtos: [
+              Produtos(
+                id: item['id'],
+                nome: item['nome'],
+                quantidade: item['quantidade'],
+                preco: item['preco'],
+              ),
+            ],
           ),
         )
         .toList();

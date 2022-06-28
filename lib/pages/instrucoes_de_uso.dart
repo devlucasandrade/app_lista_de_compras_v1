@@ -23,7 +23,6 @@ class _InstrucoesDeUsoState extends State<InstrucoesDeUso> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade300,
       appBar: AppBar(
         title: const Text('Intruções de Uso'),
         centerTitle: true,

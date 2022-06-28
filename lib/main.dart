@@ -30,7 +30,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          useMaterial3: true,
           primarySwatch: Colors.blue,
+          primaryColor: Colors.blue,
+          scaffoldBackgroundColor: Colors.blue.shade300,
         ),
         routes: {
           '/': (context) => ListaDeCompras(),
