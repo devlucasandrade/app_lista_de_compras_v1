@@ -23,7 +23,7 @@
 ## Descrição do projeto 
 
 <p align="justify">
-Projeto em desenvolvimento, para aplicação de conhecimentos adiquiridos no estudos de Flutter e lógica de programação.
+Projeto em desenvolvimento, para aplicação de conhecimentos adquiridos no estudos de Flutter e lógica de programação.
 
 A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazia uma lista em papel e usava a calculadora, para ter noção do quanto estaria o valor total das minhas compras. Com esse aplicativo, consigo adicionar os itens da lista e usá-lo, atualizando os preços, tendo assim a informação do subtotal e total de valor do carrinho.
 </p>
@@ -44,7 +44,7 @@ A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazi
 
 <div align="center">
 
-![Uso do aplicativo](https://github.com/devlucasandrade/lista_de_compras/blob/master/Lista%20de%20Compras.gif)
+![Uso do aplicativo](https://github.com/devlucasandrade/lista_de_compras/blob/main/Lista%20de%20Compras.gif)
 
 </div>
 
@@ -74,7 +74,7 @@ flutter run
 
 ## Observações
 
-- Os créditos dos assets do projeto pertemcem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki.
-- O crédito do projeto pertemce ao site: [Dighital](https://www.flaticon.com/br/autores/dighital).
+- Os créditos dos assets do projeto pertencem ao site: [Storyset](https://storyset.com/), todas do estilo criado pelo Rafiki.
+- O crédito do ícone do projeto pretence ao site: [Dighital](https://www.flaticon.com/br/autores/dighital).
 
 - Aplicativo em fase de testes.
