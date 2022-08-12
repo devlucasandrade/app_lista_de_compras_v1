@@ -44,7 +44,7 @@ A ideia do projeto surgiu da necessidade de sempre que vou ao supermercado, fazi
 
 <div align="center">
 
-![Uso do aplicativo](https://github.com/devlucasandrade/lista_de_compras/blob/master/Lista%20de%20Compras.gif)
+![Uso do aplicativo](https://github.com/devlucasandrade/lista_de_compras/blob/main/Lista%20de%20Compras.gif)
 
 </div>
 
