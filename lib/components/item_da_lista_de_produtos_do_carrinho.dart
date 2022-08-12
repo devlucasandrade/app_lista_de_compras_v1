@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lista_de_compras2/models/lista_de_produtos.dart';
 import 'package:lista_de_compras2/models/produto.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,8 @@ class ItemDaListaDeProdutosDoCarrinho extends StatefulWidget {
 
 class _ItemDaListaDeProdutosDoCarrinhoState
     extends State<ItemDaListaDeProdutosDoCarrinho> {
+  NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,6 +41,7 @@ class _ItemDaListaDeProdutosDoCarrinhoState
               .removerProdutos(widget.prods!);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
+              duration: Duration(milliseconds: 1000),
               content: Text(
                 '${widget.prods!.nome} Excluido com Sucesso!',
               ),
@@ -90,12 +94,14 @@ class _ItemDaListaDeProdutosDoCarrinhoState
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  'Preço R\$ ${widget.prods!.preco.toStringAsFixed(2)}',
+                  real.format(widget.prods!.preco),
                 ),
               ],
             ),
             trailing: Text(
-              'R\$ ${(widget.prods!.quantidade * widget.prods!.preco).toStringAsFixed(2)}',
+              real.format(
+                (widget.prods!.quantidade * widget.prods!.preco),
+              ),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

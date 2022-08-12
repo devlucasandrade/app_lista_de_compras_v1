@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:lista_de_compras2/models/lista_de_produtos.dart';
 import 'package:lista_de_compras2/models/produto.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +13,7 @@ class AdicionarProdutosForm extends StatefulWidget {
 }
 
 class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
+  NumberFormat real = NumberFormat.currency(locale: 'pt_BR', name: 'R\$');
   final double borda = 5;
 
   final _formKey = GlobalKey<FormState>();
@@ -28,7 +31,7 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
         _formData['id'] = produtos.id;
         _formData['nome'] = produtos.nome;
         _formData['quantidade'] = produtos.quantidade;
-        _formData['preco'] = produtos.preco;
+        _formData['preco'] = produtos.preco.toString().replaceAll('.', ',');
       }
     }
   }
@@ -47,10 +50,19 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
       listen: false,
     ).salvarProdutos(_formData);
 
+<<<<<<< HEAD
+    // Adicionar snackbar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: Duration(milliseconds: 1000),
+        content: Text(
+          'Adicionado/Atualizado com sucesso!',
+=======
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text(
           'Produto adicionado com sucesso!',
+>>>>>>> main
         ),
       ),
     );
@@ -102,8 +114,8 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                   TextFormField(
                     initialValue: _formData['quantidade']?.toString(),
                     decoration: const InputDecoration(labelText: 'Quantidade'),
-                    keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
                     onSaved: (quantidade) =>
                         _formData['quantidade'] = int.parse(quantidade ?? '0'),
                     validator: (_quantidade) {
@@ -120,13 +132,24 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
                   const SizedBox(height: 10),
                   TextFormField(
                     initialValue: _formData['preco']?.toString(),
-                    decoration: const InputDecoration(labelText: 'Preço'),
+                    decoration: const InputDecoration(
+                      labelText: 'Preço',
+                    ),
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.number,
-                    onSaved: (preco) =>
-                        _formData['preco'] = double.parse(preco ?? '0'),
+
+                    // Formatar valores para REAL BR
+                    inputFormatters: [
+                      RealMask(),
+                    ],
+                    onSaved: (preco) {
+                      _formData['preco'] = double.parse(
+                        preco!.replaceAll(RegExp(r','), '.'),
+                      );
+                    },
+
                     validator: (_preco) {
-                      final precoString = _preco ?? '';
+                      final precoString = _preco!.replaceAll(RegExp(r','), '.');
                       final preco = double.tryParse(precoString) ?? -1;
 
                       if (preco < 0) {
@@ -173,6 +196,53 @@ class _AdicionarProdutosFormState extends State<AdicionarProdutosForm> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Código by Jacob Moura - Youtube flutterando
+// https://www.youtube.com/watch?v=sjQLmibDEu4
+class RealMask extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    var value = newValue.text.replaceAll(RegExp(r'\D'), '');
+
+    value = (int.tryParse(value) ?? 0).toString();
+
+    // if (value.length < 3) {
+    //   value = value.padLeft(3, '0');
+    // }
+
+    value = value.split('').reversed.join();
+
+    final listCharacters = [];
+    // var decimalCount = 0;
+
+    for (var i = 0; i < value.length; i++) {
+      if (i == 2) {
+        listCharacters.insert(0, ',');
+      }
+
+      // if (i > 2) {
+      //   decimalCount++;
+      // }
+
+      // if (decimalCount == 3) {
+      //   listCharacters.insert(0, '.');
+      //   decimalCount = 0;
+      // }
+      listCharacters.insert(0, value[i]);
+    }
+
+    listCharacters.insert(0, r'');
+    var formatted = listCharacters.join();
+
+    return newValue.copyWith(
+      text: formatted,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: formatted.length),
       ),
     );
   }
