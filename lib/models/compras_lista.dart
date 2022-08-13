@@ -27,8 +27,8 @@ class ComprasLista extends ChangeNotifier {
               Produtos(
                 id: item['id'],
                 nome: item['nome'],
-                quantidade: item['quantidade'],
-                preco: item['preco'],
+                quantidade: item['quantidade'] ?? 0,
+                preco: item['preco'] ?? 0,
               ),
             ],
           ),
